@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        architecture: ["x64", "x86"]
+        build-type: ["Debug", "Release", "RelWithDebInfo"]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: lukka/get-cmake@latest
+    
+    - uses: lukka/run-cmake@v10
+      with:
+        configurePreset: default
+        configurePresetAdditionalArgs: -A ${{matrix.architecture}}
+        buildPreset: default
+        buildPresetAdditionalArgs: --config ${{matrix.build-type}}
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: ${{matrix.build-type}}-${{matrix.architecture}}
+        path: |
+          ${{github.workspace}}/build/${{matrix.build-type}}/
