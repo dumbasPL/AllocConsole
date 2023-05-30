@@ -11,12 +11,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        arch: [x64, x86]
         build-type: [Debug, Release, RelWithDebInfo]
         include:
-          - arch: x64
-            platform: x64
-          - arch: "x64"
-            platform: Win32
+          - platform: x64
+            arch: x64
+          - platform: Win32 
+            arch: x86
 
     steps:
     - uses: actions/checkout@v3
