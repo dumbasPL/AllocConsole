@@ -7,15 +7,32 @@
   },
   "configurePresets": [
     {
-      "name": "default",
+      "name": "default-x86",
       "binaryDir": "${sourceDir}/build",
-      "generator": "Visual Studio 17 2022"
+      "generator": "Visual Studio 17 2022",
+      "architecture": {
+        "value": "x86",
+        "strategy": "set"
+      }
+    },
+    {
+      "name": "default-x64",
+      "binaryDir": "${sourceDir}/build",
+      "generator": "Visual Studio 17 2022",
+      "architecture": {
+        "value": "x64",
+        "strategy": "set"
+      }
     }
   ],
   "buildPresets": [
     {
-      "name": "default",
-      "configurePreset": "default"
+      "name": "default-x86",
+      "configurePreset": "default-x86"
+    },
+    {
+      "name": "default-x64",
+      "configurePreset": "default-x64"
     }
   ]
 }

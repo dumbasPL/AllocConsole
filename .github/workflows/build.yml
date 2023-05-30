@@ -24,10 +24,10 @@ jobs:
         arch: ${{ matrix.arch }}
 
     - name: Configure
-      run: cmake --preset default -A ${{matrix.arch}}
+      run: cmake --preset default-${{matrix.arch}}
     
     - name: Build
-      run: cmake --build --preset default --config ${{matrix.build-type}}
+      run: cmake --build --preset default-${{matrix.arch}} --config ${{matrix.build-type}}
     
     - uses: actions/upload-artifact@v3
       with:
