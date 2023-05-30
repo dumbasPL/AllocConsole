@@ -11,20 +11,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: ["amd64", "amd64_x86"]
-        build-type: ["Debug", "Release", "RelWithDebInfo"]
+        arch: [x64, x86]
+        build-type: [Debug, Release, RelWithDebInfo]
+        include:
+          - arch: x64
+            platform: x64
+          - arch: "x64"
+            platform: Win32
 
     steps:
     - uses: actions/checkout@v3
 
     - uses: lukka/get-cmake@latest
 
-    - uses: ilammy/msvc-dev-cmd@v1
-      with:
-        arch: ${{ matrix.arch }}
-
     - name: Configure
-      run: cmake --preset default
+      run: cmake --preset default -A ${{matrix.platform}}
     
     - name: Build
       run: cmake --build --preset default --config ${{matrix.build-type}}
