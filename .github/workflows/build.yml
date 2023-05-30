@@ -18,14 +18,13 @@ jobs:
     - uses: actions/checkout@v3
 
     - uses: lukka/get-cmake@latest
-    
-    - uses: lukka/run-cmake@v10
-      with:
-        configurePreset: default
-        configurePresetAdditionalArgs: -A ${{matrix.architecture}}
-        buildPreset: default
-        buildPresetAdditionalArgs: --config ${{matrix.build-type}}
 
+    - name: Configure
+      run: cmake --preset default -A ${{matrix.architecture}}
+    
+    - name: Build
+      run: cmake --build --preset default --config ${{matrix.build-type}}
+    
     - uses: actions/upload-artifact@v3
       with:
         name: ${{matrix.build-type}}-${{matrix.architecture}}
