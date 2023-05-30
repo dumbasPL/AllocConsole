@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: ["x64", "x86"]
+        arch: ["amd64", "amd64_x86"]
         build-type: ["Debug", "Release", "RelWithDebInfo"]
 
     steps:
@@ -24,10 +24,10 @@ jobs:
         arch: ${{ matrix.arch }}
 
     - name: Configure
-      run: cmake --preset default-${{matrix.arch}}
+      run: cmake --preset default
     
     - name: Build
-      run: cmake --build --preset default-${{matrix.arch}} --config ${{matrix.build-type}}
+      run: cmake --build --preset default --config ${{matrix.build-type}}
     
     - uses: actions/upload-artifact@v3
       with:
