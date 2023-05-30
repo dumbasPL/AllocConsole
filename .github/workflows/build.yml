@@ -11,7 +11,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        arch: [x64, x86]
         build-type: [Debug, Release, RelWithDebInfo]
         include:
           - arch: x64
