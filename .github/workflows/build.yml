@@ -33,6 +33,6 @@ jobs:
     
     - uses: actions/upload-artifact@v4
       with:
-        name: ${{matrix.build-type}}-${{matrix.arch}}
+        name: ${{matrix.build-type}}-${{matrix.arch}}-${{matrix.preset}}
         path: |
           ${{github.workspace}}/build/${{matrix.build-type}}/
