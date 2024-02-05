@@ -13,6 +13,7 @@ jobs:
       matrix:
         arch: [x64, x86]
         build-type: [Debug, Release, RelWithDebInfo]
+        preset: [default, static]
         include:
           - platform: x64
             arch: x64
@@ -25,10 +26,10 @@ jobs:
     - uses: lukka/get-cmake@latest
 
     - name: Configure
-      run: cmake --preset default -A ${{matrix.platform}}
+      run: cmake --preset ${{matrix.preset}} -A ${{matrix.platform}}
     
     - name: Build
-      run: cmake --build --preset default --config ${{matrix.build-type}}
+      run: cmake --build --preset ${{matrix.preset}} --config ${{matrix.build-type}}
     
     - uses: actions/upload-artifact@v3
       with:

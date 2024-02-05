@@ -10,12 +10,23 @@
       "name": "default",
       "binaryDir": "${sourceDir}/build",
       "generator": "Visual Studio 17 2022"
+    },
+    {
+      "name": "static",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>"
+      }
     }
   ],
   "buildPresets": [
     {
       "name": "default",
       "configurePreset": "default"
+    },
+    {
+      "name": "static",
+      "configurePreset": "static"
     }
   ]
 }
