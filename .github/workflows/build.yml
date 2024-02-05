@@ -21,7 +21,7 @@ jobs:
             arch: x86
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - uses: lukka/get-cmake@latest
 
@@ -31,7 +31,7 @@ jobs:
     - name: Build
       run: cmake --build --preset ${{matrix.preset}} --config ${{matrix.build-type}}
     
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: ${{matrix.build-type}}-${{matrix.arch}}
         path: |
